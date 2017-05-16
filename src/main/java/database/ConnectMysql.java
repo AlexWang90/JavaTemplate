@@ -1,6 +1,6 @@
 package database;
 
-import model.ProperityParameters;
+import util.ProperityParameters;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
@@ -19,7 +19,6 @@ public class ConnectMysql {
     public PreparedStatement pst = null;
 
     public void initConnection(){
-//        sql.initConnection("10.122.134.200:3306", "recsys", "recsys", "oJyKfrdT9AI9");//连接数据库
         initConnection(ProperityParameters.hostID, ProperityParameters.database, ProperityParameters.username, ProperityParameters.password);
     }
 
