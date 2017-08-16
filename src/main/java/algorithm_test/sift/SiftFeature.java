@@ -13,8 +13,8 @@ import java.util.Map;
 public class SiftFeature {
     private String url = "";
     private List<KDFeaturePoint> siftFea = new ArrayList<KDFeaturePoint>();
-    private Map<Integer, Integer> kmeansFea = new HashMap<Integer, Integer>();
-    private Map<Integer, Integer> softKmeansFea = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> kmeansFea = new HashMap<Integer, Integer>(); // 相同视觉特征个数>=3需要sift匹配
+    private Map<Integer, Integer> softKmeansFea = new HashMap<Integer, Integer>();// 相同视觉特征个数>=30需要sift匹配
 
     public SiftFeature() {
     }
