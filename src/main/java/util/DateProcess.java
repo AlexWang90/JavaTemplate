@@ -9,6 +9,16 @@ import java.util.Date;
 public class DateProcess {
 
     private static SimpleDateFormat simpleDateFormatNorm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    public static Date parseDateStr(String dateStr) throws Exception{
+        Date date = simpleDateFormatNorm.parse(dateStr);
+        return date;
+    }
+
+    public static String formatDate(Date date){
+        return simpleDateFormatNorm.format(date);
+    }
+
     /**
      * k天之前
      * @param k
@@ -53,10 +63,13 @@ public class DateProcess {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         System.out.println(kDaysAge(30));
         System.out.println(kDaysAge(3600));
+
+        Date date = parseDateStr("2017-08-21 00:00:00");
+        System.out.println(formatDate(date));
     }
 }
 
