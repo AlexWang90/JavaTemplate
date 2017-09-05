@@ -2,6 +2,8 @@ package algorithm_test.sift;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.simpleimage.analyze.sift.SIFT;
+import com.alibaba.simpleimage.analyze.sift.match.Match;
+import com.alibaba.simpleimage.analyze.sift.match.MatchKeys;
 import com.alibaba.simpleimage.analyze.sift.render.RenderImage;
 import com.alibaba.simpleimage.analyze.sift.scale.KDFeaturePoint;
 import org.slf4j.Logger;
@@ -139,7 +141,7 @@ public class SoftQuantization {
         writer.close();
     }
 
-    class CompareKmeansSift implements Runnable{
+    class CompareKmeansSift implements Runnable {
         private String line;
         private SoftQuantization softQuantization;
         private BufferedWriter writer;
@@ -152,7 +154,7 @@ public class SoftQuantization {
 
         @Override
         public void run() {
-            try{
+            try {
                 String[] subStrs = line.split("\t");
                 String urlOne = subStrs[0].trim();
                 String[] elemsOne = urlOne.split("/");
@@ -191,7 +193,7 @@ public class SoftQuantization {
                                 kmeansFeaCount(siftFeatureOne.getSoftKmeansFea()), kmeansFeaCount(siftFeatureTwo.getSoftKmeansFea())));
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 logger.error("", e);
             }
         }

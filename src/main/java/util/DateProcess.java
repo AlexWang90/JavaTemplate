@@ -25,9 +25,6 @@ public class DateProcess {
      * @return
      */
     public static String kDaysAge(int k){
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.add(Calendar.DAY_OF_YEAR, -k);
-//        return simpleDateFormatNorm.format(calendar.getTime());
 
         Date date = new Date();
         long currentTime = date.getTime();
@@ -61,6 +58,10 @@ public class DateProcess {
 
         return new Date(currentTime - kDay);
 
+    }
+
+    public static String kHoursAge(int k){
+        return simpleDateFormatNorm.format(kHoursAgeDate(k));
     }
 
     public static void main(String[] args) throws Exception{
