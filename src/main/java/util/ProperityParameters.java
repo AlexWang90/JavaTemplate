@@ -20,28 +20,35 @@ public class ProperityParameters {
     public static String username = "";
     public static String password = "";
 
+    static{
+        loadFromPropertiesFile("servers.properties");
+    }
+
     //读取资源文件
-    public static void loadFromPropertiesFile(String paramsFile) throws Exception {
+    public static void loadFromPropertiesFile(String paramsFile) {
 
-        if (paramsLoaded == true) {
-            logger.info("ProperityParameters have been loaded!");
-            return;
-        }
-
-        paramsLoaded = true;
-        Properties properties = new Properties();
         try {
-            InputStreamReader streamReader = new InputStreamReader(ProperityParameters.class.getClassLoader().getResourceAsStream(paramsFile), "UTF-8");
-            properties.load(streamReader);
-            streamReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (paramsLoaded == true) {
+                logger.info("ProperityParameters have been loaded!");
+                return;
+            }
+
+            paramsLoaded = true;
+            Properties properties = new Properties();
+            try {
+                InputStreamReader streamReader = new InputStreamReader(ProperityParameters.class.getClassLoader().getResourceAsStream(paramsFile), "UTF-8");
+                properties.load(streamReader);
+                streamReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            hostID = properties.getProperty("hostID");
+            database = properties.getProperty("database");
+            username = properties.getProperty("username");
+            password = properties.getProperty("password");
+        }catch (Exception e){
+            logger.error("", e);
         }
-
-        hostID = properties.getProperty("hostID");
-        database = properties.getProperty("database");
-        username = properties.getProperty("username");
-        password = properties.getProperty("password");
-
     }
 }
