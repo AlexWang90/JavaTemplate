@@ -49,7 +49,7 @@ public class C3p0Util {
      * @return
      * @throws SQLException
      */
-    public static Connection getConnection() throws SQLException {
+    public synchronized static Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
