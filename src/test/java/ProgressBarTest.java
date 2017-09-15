@@ -1,4 +1,3 @@
-package test.java;
 
 import util.progressbar.ProgressBar;
 import util.progressbar.ProgressBarStyle;

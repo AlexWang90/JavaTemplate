@@ -1,6 +1,4 @@
-package test.java;
 
-import org.ansj.app.crf.pojo.Feature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import util.VectorProcess;
