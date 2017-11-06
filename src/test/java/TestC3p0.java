@@ -17,5 +17,6 @@ public class TestC3p0 {
         Connection con = C3p0Util.getConnection();
         logger.info("" + con.isClosed());
         con.close();
+        C3p0Util.closeC3P0();
     }
 }

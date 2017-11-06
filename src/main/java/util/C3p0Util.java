@@ -53,10 +53,25 @@ public class C3p0Util {
         return dataSource.getConnection();
     }
 
+    /**
+     * 关闭C3P0连接池
+     * @return
+     */
+    public static boolean closeC3P0(){
+        try {
+            dataSource.close();
+            return true;
+        }catch (Exception e){
+            logger.error("", e);
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws Exception{
         Connection con = C3p0Util.getConnection();
         logger.info("" + con.isClosed());
         con.close();
+        dataSource.close();
     }
 
 }
