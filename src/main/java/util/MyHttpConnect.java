@@ -120,7 +120,7 @@ public class MyHttpConnect {
         return result;
     }
 
-    public String sendPOSTRequest(String requestUrl, Map<String, Object> requestParams) throws IOException {
+    public static String sendPOSTRequest(String requestUrl, Map<String, Object> requestParams) throws IOException {
         StringBuilder result =new StringBuilder();
         BufferedReader in =null;
         InputStream inputStream= null;
