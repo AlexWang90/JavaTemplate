@@ -1,11 +1,13 @@
 package util;
 
+import algorithm.ProParameters;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by hzwangjian1 on 2017/9/14.
@@ -19,11 +21,13 @@ public class C3p0Util {
         //dataSource资源只能初始化一次
         dataSource = new ComboPooledDataSource();
         try {
+            Properties properties = ProperityHandler.loadPropertiesFromFile(ProParameters.PropertiesFilePath);
             dataSource.setDriverClass("com.mysql.jdbc.Driver");
-            //jdbc:mysql://localhost:3306/recsys
-            dataSource.setJdbcUrl("jdbc:mysql://" + ProperityParameters.hostID + "/" + ProperityParameters.database);
-            dataSource.setPassword(ProperityParameters.password);
-            dataSource.setUser(ProperityParameters.username);
+            String connectStr = String.format("jdbc:mysql://%s:%s/%s", properties.getProperty("hostip"), properties.getProperty("hostport"), properties.getProperty("database"));
+            logger.info("mysql connect:" + connectStr);
+            dataSource.setJdbcUrl(connectStr);
+            dataSource.setPassword(properties.getProperty("password"));
+            dataSource.setUser(properties.getProperty("username"));
         } catch (Exception e) {
             logger.error("", e);
         }
