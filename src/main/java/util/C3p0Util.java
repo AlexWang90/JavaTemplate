@@ -20,6 +20,7 @@ public class C3p0Util {
         dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.jdbc.Driver");
+            //jdbc:mysql://localhost:3306/recsys
             dataSource.setJdbcUrl("jdbc:mysql://" + ProperityParameters.hostID + "/" + ProperityParameters.database);
             dataSource.setPassword(ProperityParameters.password);
             dataSource.setUser(ProperityParameters.username);
