@@ -11,7 +11,13 @@ import util.PathUtil;
      /  \ | |/  _ \ \/ /   \ \  |\  | |  __  |  _  \| _  \
    /  _  \| |   __/\ \`     \ \|  \| |  (__| | | | |\__) |
  /_ /  \__|_|\_,__|/\_\      \____,_| \___,_|_| |_|  ,__|
- * Created by hzwangjian1 on 2016/12/5.
+
+ __   _   __  _  __            _  _,_ _,__,__  __,_
+ /  \ | |/  _ \ \/ /     |` |\ | |/ __  |  _  \| _  \
+ / `_ \| |   __/\ \`      \ \| \/ | (__| | | | |\__) |
+ /_/  \_|_|\_,__|/\_\       \___,__|\___,_|_| |_| ,___|
+
+ * Created by Alex Wang on 2016/12/5.
  */
 public class MainEntry {
     private static Logger logger = LoggerFactory.getLogger(MainEntry.class);
