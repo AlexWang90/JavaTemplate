@@ -7,10 +7,10 @@ import algorithm_test.sift.SoftQuantization;
 import util.PathUtil;
 
 /**
-       _   __  __  _  __
-     /  \ | |/  _ \ \/ /
-   /  _  \| |   __/\ \`
- /_ /  \__|_|\____|/\_\
+       _   __  __  _  __   __        __ ___,_ _,__   __,_
+     /  \ | |/  _ \ \/ /   \ \  |\  | |  __  |  _  \| _  \
+   /  _  \| |   __/\ \`     \ \|  \| |  (__| | | | |\__) |
+ /_ /  \__|_|\_,__|/\_\      \____,_| \___,_|_| |_|  ,__|
  * Created by hzwangjian1 on 2016/12/5.
  */
 public class MainEntry {
