@@ -17,9 +17,9 @@ import java.util.Map;
 /**
  * Created by hzwangjian1 on 2016/10/23.
  */
-public class MyHttpConnect {
+public class HttpConnect {
 
-    private static Logger logger = LoggerFactory.getLogger(MyHttpConnect.class);
+    private static Logger logger = LoggerFactory.getLogger(HttpConnect.class);
     /**
      * 根据路径 下载图片 然后 保存到对应的目录下
      *
@@ -194,9 +194,9 @@ public class MyHttpConnect {
 
     public static void main(String[] args) throws Exception {
 
-        MyHttpConnect myHttpConnect = new MyHttpConnect();
+        HttpConnect httpConnect = new HttpConnect();
         String url = "http://dmr.nosdn.127.net/inews-20161015-7dddb87bbb1675a33edc7b2dc67324d9.jpg";
         String savePath = "E://workspace/data/hotnesspredict/temp/imgs";
-        myHttpConnect.downloadImage(url, "1.jpg", savePath);
+        httpConnect.downloadImage(url, "1.jpg", savePath);
     }
 }
