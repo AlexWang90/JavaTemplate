@@ -38,6 +38,20 @@ public class PrintUtil {
         logger.info(format + message + ANSI_RESET);
     }
 
+    /**
+     * 用户指定logger
+     * @param preferedLogger
+     * @param message
+     * @param args
+     */
+    public static void info(Logger preferedLogger, String message, String... args){
+        String format = "";
+        for(String arg : args){
+            format += arg;
+        }
+        preferedLogger.info(format + message + ANSI_RESET);
+    }
+
     public static void debug(String message, String... args){
         String format = "";
         for(String arg : args){
@@ -46,12 +60,40 @@ public class PrintUtil {
         logger.debug(format + message + ANSI_RESET);
     }
 
+    /**
+     * 用户指定logger
+     * @param preferedLogger
+     * @param message
+     * @param args
+     */
+    public static void debug(Logger preferedLogger,String message, String... args){
+        String format = "";
+        for(String arg : args){
+            format += arg;
+        }
+        preferedLogger.debug(format + message + ANSI_RESET);
+    }
+
     public static void error(String message, String... args){
         String format = "";
         for(String arg : args){
             format += arg;
         }
         logger.error(format + message + ANSI_RESET);
+    }
+
+    /**
+     * 用户指定logger
+     * @param preferedLogger
+     * @param message
+     * @param args
+     */
+    public static void error(Logger preferedLogger,String message, String... args){
+        String format = "";
+        for(String arg : args){
+            format += arg;
+        }
+        preferedLogger.error(format + message + ANSI_RESET);
     }
 
     public static void testPrintColot() {
