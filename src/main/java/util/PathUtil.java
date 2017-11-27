@@ -1,5 +1,7 @@
 package util;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.spark.sql.execution.Except;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,5 +41,19 @@ public class PathUtil {
         return false;
     }
 
+    /**
+     * 删除目录，返回是否成功
+     * @param dirPath
+     * @return
+     */
+    public static boolean deleteDir(String dirPath){
+        try {
+            FileUtils.deleteDirectory(new File(dirPath));
+        }catch (Exception e){
+            logger.error("", e);
+            return false;
+        }
+        return true;
+    }
 
 }
