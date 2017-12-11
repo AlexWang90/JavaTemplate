@@ -1,12 +1,12 @@
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import util.VectorProcess;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by hzwangjian1 on 2017/5/19.
@@ -52,6 +52,30 @@ public class Test {
         }
     }
 
+    public static void testComparator(){
+        List<Integer> integerList = new ArrayList<Integer>(){{
+            add(3);
+            add(7);
+            add(3);
+            add(8);
+            add(6);
+            add(2);
+            add(7);
+        }};
+        Collections.sort(integerList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if(o1 < o2){
+                    return -1;
+                }else if(o1 > o2){
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        logger.info(VectorProcess.join(integerList, ","));
+    }
+
     public static void test(){
         logger.info(String.format("%d is test", 4));
     }
@@ -61,5 +85,7 @@ public class Test {
         geneHashCode();
 //        docidSelect();
         test();
+
+        testComparator();
     }
 }
