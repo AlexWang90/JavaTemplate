@@ -50,7 +50,7 @@ public class PathUtil {
         try {
             FileUtils.deleteDirectory(new File(dirPath));
         }catch (Exception e){
-            logger.error("", e);
+            logger.error("delete dir error:" + dirPath, e);
             return false;
         }
         return true;
