@@ -39,6 +39,18 @@ public class MainEntry {
         else if (method.equalsIgnoreCase("test_curr_path")){
             logger.info("PathUtil.getCurrentDir:" + PathUtil.getCurrentDir());
         }
+        /***********************************************************************************************
+         *                                      历史数据清理
+         **********************************************************************************************/
+        else if(method.equalsIgnoreCase("data_clean")){
+            if(args.length >= 3){
+                String dir = args[1].trim();
+                int days = Integer.valueOf(args[2]);
+                PathUtil.cleanHistoryDirs(dir, days);
+            }else{
+                logger.info("Usage example: java -jar LocalDocDuplicate-DataClean.jar data_clean somedir 30");
+            }
+        }
         else{
             logger.info("cannot recognize method:" + method);
         }
