@@ -31,6 +31,7 @@ import java.util.Map;
 
 /**
  * Created by hzwangjian1 on 2018/3/8.
+ * 抽取CEDD+PHOG+SIFT、SIFT图像特征提取和匹配
  */
 public class Image {
     private static Logger logger = LoggerFactory.getLogger(Image.class);
