@@ -1,5 +1,6 @@
 package algorithm_test.image_dup;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.simpleimage.analyze.sift.SIFT;
 import com.alibaba.simpleimage.analyze.sift.match.Match;
 import com.alibaba.simpleimage.analyze.sift.match.MatchKeys;
@@ -23,7 +24,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hzwangjian1 on 2018/3/8.
@@ -123,14 +127,39 @@ public class Image {
 
 
     public static int[] siftMatch(List<KDFeaturePoint> siftFeatureOne, List<KDFeaturePoint> siftFeatureTwo){
+        logger.info("size of siftFeatureOne feature:" + siftFeatureOne.size());
+        logger.info("size of siftFeatureTwo feature:" + siftFeatureTwo.size());
         int[] matches = new int[2];
         List<Match> ms = MatchKeys.findMatchesBBF(siftFeatureOne, siftFeatureTwo);
-        ms = MatchKeys.filterMore(ms);
+        ms = filterMore(ms);
+        logger.info("size of ms:" + ms.size());
         List<Match> msReverse = MatchKeys.findMatchesBBF(siftFeatureTwo, siftFeatureOne);
-        msReverse = MatchKeys.filterMore(msReverse);
+        msReverse = filterMore(msReverse);
+        logger.info("size of msReverse:" + msReverse.size());
         matches[0] = ms.size();
         matches[1] = msReverse.size();
         return matches;
+    }
+
+    public static ArrayList<Match> filterMore(List<Match> matches) {
+        Map<KDFeaturePoint, Integer> map1 = new HashMap<KDFeaturePoint, Integer>();
+        Map<KDFeaturePoint, Integer> map2 = new HashMap<>();
+
+        for (Match m : matches) {
+            Integer kp1V = map1.get(m.fp1);
+            int lI = (kp1V == null) ? 0 : (int) kp1V;
+            map1.put(m.fp1, lI + 1);
+            Integer kp2V = map2.get(m.fp2);
+            int rI = (kp2V == null) ? 0 : (int) kp2V;
+            map2.put(m.fp2, rI + 1);
+        }
+        ArrayList<Match> survivors = new ArrayList<Match>();
+        for (Match m : matches) {
+            Integer kp1V = map1.get(m.fp1);
+            Integer kp2V = map2.get(m.fp2);
+            if (kp1V <= 1 && kp2V <= 1) survivors.add(m);
+        }
+        return (survivors);
     }
 
     public static double[] extractPhogFea(String imagePath) {
@@ -227,6 +256,12 @@ public class Image {
         // 完毕，关闭所有链接
         os.close();
         is.close();
+    }
+
+    public static void main(String[] args) {
+        String imageUrl = "http://spider.nosdn.127.net/bb9891bc04023b23b0175b6900281580.jpeg";
+        ImageDupResult imageDupResult = duplicateCheck(imageUrl, imageUrl);
+        System.out.println(JSON.toJSONString(imageDupResult));
     }
 
 }
