@@ -1,5 +1,6 @@
 package algorithm_test.image_dup;
 
+import algorithm_test.image_dup.ImageDupResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.simpleimage.analyze.sift.SIFT;
 import com.alibaba.simpleimage.analyze.sift.match.Match;
@@ -31,7 +32,6 @@ import java.util.Map;
 
 /**
  * Created by hzwangjian1 on 2018/3/8.
- * 抽取CEDD+PHOG+SIFT、SIFT图像特征提取和匹配
  */
 public class Image {
     private static Logger logger = LoggerFactory.getLogger(Image.class);
@@ -81,9 +81,10 @@ public class Image {
             BufferedImage imgTwo = ImageIO.read(new File(imagePathTwo));
 
             // extract features
-            SIFT sift = new SIFT();
-            List<KDFeaturePoint> siftFeatureOne = extractSiftFeature(sift, imgOne);
-            List<KDFeaturePoint> siftFeatureTwo = extractSiftFeature(sift, imgTwo);
+            SIFT siftOne = new SIFT();
+            List<KDFeaturePoint> siftFeatureOne = extractSiftFeature(siftOne, imgOne);
+            SIFT siftTwo = new SIFT();
+            List<KDFeaturePoint> siftFeatureTwo = extractSiftFeature(siftTwo, imgTwo);
             double[] ceddFeaOne = extractCeddFea(imagePathOne);
             double[] ceddFeaTwo = extractCeddFea(imagePathTwo);
             double[] phogFeaOne = extractPhogFea(imagePathOne);
@@ -132,10 +133,12 @@ public class Image {
         logger.info("size of siftFeatureTwo feature:" + siftFeatureTwo.size());
         int[] matches = new int[2];
         List<Match> ms = MatchKeys.findMatchesBBF(siftFeatureOne, siftFeatureTwo);
-        ms = filterMore(ms);
+        ms = MatchKeys.filterMore(ms);
+//        ms = filterMore(ms);
         logger.info("size of ms:" + ms.size());
         List<Match> msReverse = MatchKeys.findMatchesBBF(siftFeatureTwo, siftFeatureOne);
-        msReverse = filterMore(msReverse);
+        msReverse = MatchKeys.filterMore(msReverse);
+//        msReverse = filterMore(msReverse);
         logger.info("size of msReverse:" + msReverse.size());
         matches[0] = ms.size();
         matches[1] = msReverse.size();
@@ -260,8 +263,9 @@ public class Image {
     }
 
     public static void main(String[] args) {
-        String imageUrl = "http://spider.nosdn.127.net/bb9891bc04023b23b0175b6900281580.jpeg";
-        ImageDupResult imageDupResult = duplicateCheck(imageUrl, imageUrl);
+        String imageUrlOne = "http://spider.nosdn.127.net/bb9891bc04023b23b0175b6900281580.jpeg";
+        String imageUrlTwo = "http://cms-bucket.nosdn.127.net/2303429067644adc925a84f6de4ca85620180309083001.jpeg";
+        ImageDupResult imageDupResult = duplicateCheck(imageUrlOne, imageUrlTwo);
         System.out.println(JSON.toJSONString(imageDupResult));
     }
 
