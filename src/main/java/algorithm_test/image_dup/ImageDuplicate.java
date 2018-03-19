@@ -1,6 +1,5 @@
 package algorithm_test.image_dup;
 
-import algorithm_test.image_dup.ImageDupResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.simpleimage.analyze.sift.SIFT;
 import com.alibaba.simpleimage.analyze.sift.match.Match;
@@ -33,8 +32,8 @@ import java.util.Map;
 /**
  * Created by hzwangjian1 on 2018/3/8.
  */
-public class Image {
-    private static Logger logger = LoggerFactory.getLogger(Image.class);
+public class ImageDuplicate {
+    private static Logger logger = LoggerFactory.getLogger(ImageDuplicate.class);
 
     // create temp dir to save images
     private static final Path CURRENTPATH = Paths.get(System.getProperty("user.dir"));
