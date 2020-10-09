@@ -1,8 +1,10 @@
 package spark;
 
+import com.esotericsoftware.kryo.Kryo;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.serializer.KryoRegistrator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,5 +27,17 @@ public class SparkExample implements Serializable{
 
         JavaRDD<String> baseRddx = sc.textFile("hzwangjian1/docduplicate/toutiaoFeatureBaseOne/toutiaoFeatureRealtime_2017*");
         logger.info("size of baseRddx:" + baseRddx.count());
+    }
+}
+
+
+public class MyRegistrator implements KryoRegistrator {
+    @Override
+    public void registerClasses(Kryo kryo) {
+//        kryo.register(NewsEntity.class);
+//        kryo.register(KeyWord.class);
+//        kryo.register(PkTerm.class);
+//        kryo.register(FeatureExtractorWithSpark.class);
+//        kryo.register(TextLabelAndFeatureObject.class);
     }
 }
